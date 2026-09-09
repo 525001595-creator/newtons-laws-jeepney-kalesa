@@ -1,0 +1,24 @@
+NEWTON'S LAWS: JEEPNEY & KALESA IN ACTION
+COPYRIGHT NOTICE
+
+Copyright © 2026 Sam David A. Fatalla
+
+Author/Creator:
+Sam David A. Fatalla
+
+Work:
+Interactive Grade 11 Physics simulation — Newton's Laws of Motion:
+Jeepney & Kalesa in Action
+
+This notice identifies the author/creator of this version of the educational
+computer program and its original instructional/interface content.
+
+GitHub repository:
+https://github.com/525001595-creator/newtons-laws-jeepney-kalesa/
+
+Live website:
+https://525001595-creator.github.io/newtons-laws-jeepney-kalesa/
+
+Note:
+This notice is an authorship/copyright attribution. It is not a substitute
+for formal legal advice or copyright registration/deposit.

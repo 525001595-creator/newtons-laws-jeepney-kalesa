@@ -58,3 +58,25 @@ Possible additions:
 5. Teacher mode with a hidden answer key.
 6. Save/export learner results.
 7. Publish online with GitHub Pages or another static hosting service.
+
+## Copyright and authorship
+
+Title: Newton's Laws: Jeepney & Kalesa in Action  
+Author/Creator: Sam David A. Fatalla  
+Copyright: © 2026 Sam David A. Fatalla  
+Classification: Educational computer program / interactive Physics simulation
+
+The simulation displays the creator's copyright notice on-screen and also includes
+authorship information in the source files. The GitHub repository history provides
+a dated record of published versions.
+
+For Philippine copyright registration, consult the Intellectual Property Office of
+the Philippines (IPOPHL). Copyright protection for original computer programs is
+automatic upon creation, while registration/deposit may be filed to obtain an
+appropriate certificate.
+
+Repository:
+https://github.com/525001595-creator/newtons-laws-jeepney-kalesa
+
+Live site:
+https://525001595-creator.github.io/newtons-laws-jeepney-kalesa/

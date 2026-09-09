@@ -1,3 +1,9 @@
+/*
+ * Newton's Laws: Jeepney & Kalesa in Action
+ * Copyright © 2026 Sam David A. Fatalla
+ * Educational simulation for Grade 11 Physics.
+ */
+
 const state = {
   law: 1,
   running: false,
