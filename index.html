@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Newton's Laws | Jeepney & Kalesa Simulation</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-icon">⚙️</div>
+      <div>
+        <h1>Newton's Laws of Motion</h1>
+        <p>Jeepney &amp; Kalesa in Action</p>
+      </div>
+    </div>
+    <nav>
+      <button class="nav-btn active" data-law="1">1st Law<br><span>Inertia</span></button>
+      <button class="nav-btn" data-law="2">2nd Law<br><span>F = ma</span></button>
+      <button class="nav-btn" data-law="3">3rd Law<br><span>Action &amp; Reaction</span></button>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="intro">
+      <div>
+        <h2 id="lawTitle">Newton's 1st Law — Inertia</h2>
+        <p id="lawDescription">
+          Explore how an object keeps its state of motion unless a net force acts on it.
+        </p>
+      </div>
+      <div class="tip">💡 <b>Explore:</b> Change one variable at a time and observe what happens.</div>
+    </section>
+
+    <section class="simulation-card">
+      <div class="scene-wrap">
+        <div class="sky">
+          <div class="cloud cloud1"></div>
+          <div class="cloud cloud2"></div>
+          <div class="sun"></div>
+          <div class="city">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <div class="road">
+          <div class="road-line"></div>
+          <div id="vehicle" class="vehicle jeepney">
+            <div class="vehicle-label">JEEPNEY</div>
+            <div id="passenger" class="passenger" aria-label="Passenger">
+              <div class="passenger-head"></div>
+              <div class="passenger-body"></div>
+              <div class="passenger-leg leg1"></div>
+              <div class="passenger-leg leg2"></div>
+            </div>
+            <svg viewBox="0 0 360 150" aria-label="Jeepney illustration">
+              <rect x="42" y="42" width="250" height="65" rx="12" fill="#f6c928" stroke="#14213d" stroke-width="5"/>
+              <rect x="70" y="54" width="175" height="32" rx="5" fill="#8ed8ff" stroke="#14213d" stroke-width="4"/>
+              <rect x="53" y="38" width="230" height="15" rx="5" fill="#e63946"/>
+              <rect x="250" y="61" width="52" height="44" rx="7" fill="#f6c928" stroke="#14213d" stroke-width="5"/>
+              <rect x="270" y="70" width="23" height="20" fill="#bde9ff"/>
+              <rect x="20" y="84" width="25" height="22" fill="#f6c928" stroke="#14213d" stroke-width="4"/>
+              <circle cx="91" cy="112" r="24" fill="#202733"/>
+              <circle cx="91" cy="112" r="11" fill="#bfc8d6"/>
+              <circle cx="254" cy="112" r="24" fill="#202733"/>
+              <circle cx="254" cy="112" r="11" fill="#bfc8d6"/>
+              <rect x="58" y="89" width="185" height="8" fill="#e63946"/>
+              <text x="155" y="48" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">PHILIPPINES</text>
+            </svg>
+          </div>
+
+          <div id="kalesa" class="vehicle kalesa">
+            <div class="vehicle-label">KALESA</div>
+            <svg viewBox="0 0 390 160" aria-label="Kalesa illustration">
+              <circle cx="105" cy="118" r="36" fill="#9b6b3d" stroke="#14213d" stroke-width="5"/>
+              <circle cx="105" cy="118" r="12" fill="#f5d08a" stroke="#14213d" stroke-width="4"/>
+              <circle cx="250" cy="118" r="31" fill="#9b6b3d" stroke="#14213d" stroke-width="5"/>
+              <circle cx="250" cy="118" r="10" fill="#f5d08a" stroke="#14213d" stroke-width="4"/>
+              <rect x="90" y="62" width="170" height="50" rx="10" fill="#8b5e34" stroke="#14213d" stroke-width="5"/>
+              <path d="M82 62 Q175 15 268 62" fill="#c98b4b" stroke="#14213d" stroke-width="5"/>
+              <rect x="118" y="68" width="115" height="25" fill="#7ec8e3"/>
+              <path d="M260 88 L350 75" stroke="#14213d" stroke-width="7"/>
+              <path d="M350 75 L372 92" stroke="#14213d" stroke-width="7"/>
+              <ellipse cx="345" cy="62" rx="18" ry="12" fill="#8a5a35" stroke="#14213d" stroke-width="4"/>
+              <circle cx="359" cy="55" r="10" fill="#8a5a35" stroke="#14213d" stroke-width="4"/>
+              <path d="M367 58 L382 62" stroke="#14213d" stroke-width="3"/>
+              <path d="M337 72 L330 104 M350 72 L356 104" stroke="#14213d" stroke-width="5"/>
+            </svg>
+          </div>
+
+          <div id="forceArrow" class="force-arrow hidden"><span>Force</span><b>→</b></div>
+          <div id="reactionArrow" class="reaction-arrow hidden"><span>Reaction</span><b>←</b></div>
+        </div>
+
+        <div class="readouts">
+          <div class="readout">
+            <span>Time</span><strong id="timeReadout">0.0 s</strong>
+          </div>
+          <div class="readout">
+            <span>Velocity</span><strong id="velocityReadout">0.0 m/s</strong>
+          </div>
+          <div class="readout">
+            <span>Acceleration</span><strong id="accelerationReadout">0.0 m/s²</strong>
+          </div>
+          <div class="readout">
+            <span>Net Force</span><strong id="netForceReadout">0 N</strong>
+          </div>
+        </div>
+
+        <div class="controls-bar">
+          <button id="playBtn" class="primary">▶ Start</button>
+          <button id="stepBtn">⏭ Step</button>
+          <button id="resetBtn">↺ Reset</button>
+          <span class="status" id="statusText">Ready to explore</span>
+        </div>
+      </div>
+
+      <aside class="control-panel">
+        <h3>Simulation Controls</h3>
+
+        <label class="field">
+          <span>Scenario</span>
+          <select id="scenario">
+            <option value="accelerate">Jeepney starts moving</option>
+            <option value="brake">Jeepney brakes suddenly</option>
+            <option value="steady">Jeepney moves at constant velocity</option>
+            <option value="kalesa">Horse pulls the kalesa</option>
+            <option value="compare">Compare mass and force</option>
+          </select>
+        </label>
+
+        <div class="control-group">
+          <div class="control-title"><span>Mass</span><b><span id="massValue">2500</span> kg</b></div>
+          <input id="massSlider" type="range" min="500" max="4000" step="100" value="2500" />
+        </div>
+
+        <div class="control-group">
+          <div class="control-title"><span>Applied Force</span><b><span id="forceValue">5000</span> N</b></div>
+          <input id="forceSlider" type="range" min="0" max="12000" step="100" value="5000" />
+        </div>
+
+        <div class="control-group">
+          <div class="control-title"><span>Friction</span><b><span id="frictionValue">1000</span> N</b></div>
+          <input id="frictionSlider" type="range" min="0" max="5000" step="100" value="1000" />
+        </div>
+
+        <div class="control-group">
+          <div class="control-title"><span>Initial Velocity</span><b><span id="velocityValue">0</span> m/s</b></div>
+          <input id="velocitySlider" type="range" min="0" max="20" step="1" value="0" />
+        </div>
+
+        <label class="check"><input id="showArrows" type="checkbox" checked /> Show force arrows</label>
+        <label class="check"><input id="showValues" type="checkbox" checked /> Show numerical values</label>
+
+        <div id="thirdLawBox" class="third-law-box hidden">
+          <h4>Action–Reaction</h4>
+          <p>For every action force, there is an equal and opposite reaction force.</p>
+          <div class="action-row"><span>Action</span><b id="actionValue">5000 N</b></div>
+          <div class="action-row"><span>Reaction</span><b id="reactionValue">5000 N</b></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="learning-grid">
+      <article class="concept blue">
+        <div class="concept-icon">1</div>
+        <div>
+          <h3>1st Law — Inertia</h3>
+          <p>An object at rest stays at rest, and an object in motion stays in motion unless acted on by a net force.</p>
+          <button class="mini-btn" data-experiment="inertia">Try the inertia experiment</button>
+        </div>
+      </article>
+
+      <article class="concept blue inertia-card">
+        <div class="concept-icon">🧍</div>
+        <div>
+          <h3>Passenger Inertia</h3>
+          <p>When the jeepney changes motion suddenly, the passenger tends to keep the previous state of motion.</p>
+          <button class="mini-btn" id="passengerDemo">Run the passenger demo</button>
+        </div>
+      </article>
+
+      <article class="concept green">
+        <div class="concept-icon">2</div>
+        <div>
+          <h3>2nd Law — F = ma</h3>
+          <p>The acceleration of an object depends on the net force acting on it and its mass.</p>
+          <button class="mini-btn" data-experiment="force">Try the F = ma experiment</button>
+        </div>
+      </article>
+
+      <article class="concept purple">
+        <div class="concept-icon">3</div>
+        <div>
+          <h3>3rd Law — Action &amp; Reaction</h3>
+          <p>For every action force, there is an equal in magnitude and opposite reaction force.</p>
+          <button class="mini-btn" data-experiment="reaction">Try the action–reaction experiment</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="observation">
+      <div>
+        <span class="eyebrow">OBSERVE &amp; EXPLAIN</span>
+        <h2 id="observationTitle">What happens to the passenger?</h2>
+        <p id="observationText">When the jeepney suddenly accelerates, the passenger tends to remain at rest relative to the road.</p>
+      </div>
+      <div class="observation-answer">
+        <span>Passenger motion</span>
+        <strong id="passengerStatus">Stays nearly in place</strong>
+      </div>
+    </section>
+
+    <section class="challenge">
+      <div>
+        <span class="eyebrow">LEARNER CHALLENGE</span>
+        <h2 id="challengeTitle">Can you make the jeepney accelerate at 2 m/s²?</h2>
+        <p id="challengeText">Set the mass to 2,500 kg and adjust the force until the acceleration reaches 2 m/s². Remember to consider friction.</p>
+      </div>
+      <div class="challenge-answer">
+        <div>Current acceleration</div>
+        <strong id="challengeAccel">0.00 m/s²</strong>
+        <span id="challengeResult">Keep experimenting.</span>
+      </div>
+    </section>
+
+    <section class="teacher-note">
+      <h3>👩‍🏫 Suggested classroom use</h3>
+      <ol>
+        <li><b>Predict:</b> Ask learners what will happen before pressing Start.</li>
+        <li><b>Observe:</b> Change only one variable at a time.</li>
+        <li><b>Explain:</b> Ask learners to connect their observations to Newton's law.</li>
+        <li><b>Apply:</b> Give the challenge and let learners find their own solution.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    <span>Newton's Laws of Motion • Jeepney &amp; Kalesa Simulation</span>
+    <span>Designed for classroom inquiry</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
